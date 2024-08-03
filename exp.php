@@ -47,10 +47,4 @@ if(isset($_FILES['image'])) {
     }
 }
 
-//Bir formdan kullanıcı adı, e posta , şifre, kayıt tarihi, profil resmi, kapak resmi , yetki durumu bilgilerini aldığımızı var sayalım.
-//bu bilgileri aşağıdaki örnekle işleyebilirsiniz.
-
-
-
-
 ?>
