@@ -1,51 +1,51 @@
 # PDO God Mode Database Class 🚀
 
-**[🇺🇸 Click here to read in English / İngilizce okumak için buraya tıklayın](README.en.md)**
+**[🇹🇷 Türkçe okumak için buraya tıklayın / Click here to read in Turkish](README.md)**
 
-**Güçlü, Güvenli ve Esnek PHP PDO Veritabanı Sınıfı**
+**Powerful, Secure and Flexible PHP PDO Database Class**
 
-PDO God Mode, PHP projelerinizde veritabanı işlemlerini kolaylaştıran, güvenli ve performanslı bir PDO wrapper sınıfıdır. Herhangi bir tablo yapısıyla çalışabilir ve gelişmiş özellikler sunar.
+PDO God Mode is a secure and performant PDO wrapper class that simplifies database operations in your PHP projects. It works with any table structure and offers advanced features.
 
-## ✨ Özellikler
+## ✨ Features
 
-- 🔒 **Güvenli**: SQL Injection koruması ile prepared statements
-- 🚀 **Performanslı**: Optimized queries ve connection pooling
-- 🔧 **Esnek**: Herhangi bir tablo yapısıyla çalışır
-- 📁 **Dosya Yükleme**: Gelişmiş dosya yükleme sistemi
-- 🔄 **Transaction Desteği**: ACID uyumlu işlemler
-- 📊 **Gelişmiş Sorgular**: JOIN, subquery, aggregate functions
-- 🛠️ **Hata Yönetimi**: Kapsamlı hata yakalama ve raporlama
-- 📝 **Logging**: Query logging ve debugging
-- 🎯 **Kolay Kullanım**: Minimal kod ile maksimum işlevsellik
+- 🔒 **Secure**: SQL Injection protection with prepared statements
+- 🚀 **Performant**: Optimized queries and connection pooling
+- 🔧 **Flexible**: Works with any table structure
+- 📁 **File Upload**: Advanced file upload system
+- 🔄 **Transaction Support**: ACID compliant operations
+- 📊 **Advanced Queries**: JOIN, subquery, aggregate functions
+- 🛠️ **Error Handling**: Comprehensive error catching and reporting
+- 📝 **Logging**: Query logging and debugging
+- 🎯 **Easy to Use**: Maximum functionality with minimal code
 
-## 📋 Gereksinimler
+## 📋 Requirements
 
-- PHP 7.4 veya üzeri
+- PHP 7.4 or higher
 - PDO extension
-- MySQL 5.7+ veya MariaDB 10.2+
+- MySQL 5.7+ or MariaDB 10.2+
 
-## 🚀 Kurulum
+## 🚀 Installation
 
-1. Dosyaları projenize kopyalayın:
+1. Copy files to your project:
 ```bash
 git clone https://github.com/username/pdo-god-mode.git
 ```
 
-2. Sınıfı projenizde kullanın:
+2. Use the class in your project:
 ```php
 require_once 'pdo-god-mode-class.php';
 $db = new Database($config);
 ```
 
-## 📖 Temel Kullanım
+## 📖 Basic Usage
 
-### Veritabanı Bağlantısı
+### Database Connection
 
 ```php
-// Varsayılan ayarlarla
+// With default settings
 $db = new Database();
 
-// Özel ayarlarla
+// With custom settings
 $config = [
     'host' => 'localhost',
     'username' => 'root',
@@ -56,68 +56,68 @@ $config = [
 $db = new Database($config);
 ```
 
-### CREATE - Veri Ekleme
+### CREATE - Insert Data
 
 ```php
-// Basit insert
+// Simple insert
 $userData = [
-    'name' => 'Ahmet Yılmaz',
-    'email' => 'ahmet@example.com',
-    'phone' => '0555-123-4567'
+    'name' => 'John Doe',
+    'email' => 'john@example.com',
+    'phone' => '+1-555-123-4567'
 ];
 
 $userId = $db->insert('users', $userData);
 if ($userId) {
-    echo "Kullanıcı eklendi. ID: {$userId}";
+    echo "User added. ID: {$userId}";
 }
 ```
 
-### READ - Veri Okuma
+### READ - Read Data
 
 ```php
-// Tüm kayıtları getir
+// Get all records
 $users = $db->select('users');
 
-// Koşullu sorgular
+// Conditional queries
 $activeUsers = $db->select('users', '*', 'status = :status', [':status' => 'active']);
 
-// Tek kayıt getir
+// Get single record
 $user = $db->selectOne('users', '*', 'id = :id', [':id' => 1]);
 
-// Sayım
+// Count records
 $userCount = $db->count('users', 'status = :status', [':status' => 'active']);
 
-// Sıralama ve limit
+// Sorting and limit
 $recentUsers = $db->select('users', '*', '', [], 'created_at DESC', '10');
 ```
 
-### UPDATE - Veri Güncelleme
+### UPDATE - Update Data
 
 ```php
 $updateData = [
-    'name' => 'Ahmet Yılmaz (Güncellendi)',
+    'name' => 'John Doe (Updated)',
     'updated_at' => date('Y-m-d H:i:s')
 ];
 
 $result = $db->update('users', $updateData, 'id = :id', [':id' => 1]);
 ```
 
-### DELETE - Veri Silme
+### DELETE - Delete Data
 
 ```php
-// Tek kayıt silme
+// Delete single record
 $result = $db->delete('users', 'id = :id', [':id' => 1]);
 
-// Çoklu silme
+// Multiple delete
 $result = $db->delete('users', 'status = :status AND created_at < :date', [
     ':status' => 'inactive',
     ':date' => '2023-01-01'
 ]);
 ```
 
-## 🔧 Gelişmiş Özellikler
+## 🔧 Advanced Features
 
-### Transaction İşlemleri
+### Transaction Operations
 
 ```php
 try {
@@ -127,17 +127,17 @@ try {
     $profileId = $db->insert('user_profiles', ['user_id' => $userId, 'bio' => 'Test']);
     
     $db->commit();
-    echo "Transaction başarılı";
+    echo "Transaction successful";
 } catch (Exception $e) {
     $db->rollback();
-    echo "Hata: " . $e->getMessage();
+    echo "Error: " . $e->getMessage();
 }
 ```
 
-### Özel SQL Sorguları
+### Custom SQL Queries
 
 ```php
-// JOIN sorgusu
+// JOIN query
 $sql = "
     SELECT u.name, u.email, p.title 
     FROM users u 
@@ -151,16 +151,16 @@ $sql = "SELECT COUNT(*) as total, AVG(age) as avg_age FROM users";
 $stats = $db->query($sql);
 ```
 
-### Dosya Yükleme
+### File Upload
 
 ```php
-// Basit dosya yükleme
+// Simple file upload
 $result = $db->uploadFile($_FILES['upload']);
 
 if ($result['success']) {
-    echo "Dosya yüklendi: " . $result['path'];
+    echo "File uploaded: " . $result['path'];
     
-    // Veritabanına kaydet
+    // Save to database
     $db->insert('uploads', [
         'filename' => $result['filename'],
         'path' => $result['path'],
@@ -168,7 +168,7 @@ if ($result['success']) {
     ]);
 }
 
-// Özel ayarlarla yükleme
+// Upload with custom options
 $options = [
     'allowed_extensions' => ['jpg', 'png', 'gif'],
     'max_size' => 2 * 1024 * 1024, // 2MB
@@ -179,43 +179,43 @@ $options = [
 $result = $db->uploadFile($_FILES['upload'], $options);
 ```
 
-## 📁 Dosya Yapısı
+## 📁 File Structure
 
 ```
 pdo-god-mode/
-├── pdo-god-mode-class.php    # Ana sınıf dosyası
+├── pdo-god-mode-class.php    # Main class file
 ├── examples/
-│   ├── basic-crud.php        # Temel CRUD örnekleri
-│   └── advanced-queries.php  # Gelişmiş sorgu örnekleri
-├── uploads/                  # Dosya yükleme dizini
-├── logs/                     # Log dosyaları
-├── .gitignore               # Git ignore dosyası
-├── LICENSE                  # Lisans dosyası
-├── README.md                # Türkçe dokümantasyon (bu dosya)
-├── README.en.md             # İngilizce dokümantasyon
-└── schema.sql               # Veritabanı şeması
+│   ├── basic-crud.php        # Basic CRUD examples
+│   └── advanced-queries.php  # Advanced query examples
+├── uploads/                  # File upload directory
+├── logs/                     # Log files
+├── .gitignore               # Git ignore file
+├── LICENSE                  # License file
+├── README.md                # Turkish documentation
+├── README.en.md             # English documentation (this file)
+└── schema.sql               # Database schema
 ```
 
-## 🔒 Güvenlik Özellikleri
+## 🔒 Security Features
 
-- **SQL Injection Koruması**: Tüm sorgular prepared statements kullanır
-- **XSS Koruması**: Veri sanitization
-- **Dosya Yükleme Güvenliği**: Uzantı ve boyut kontrolü
-- **Tablo Adı Doğrulama**: Geçersiz tablo adlarına karşı koruma
-- **Hata Gizleme**: Üretim ortamında hassas bilgilerin gizlenmesi
+- **SQL Injection Protection**: All queries use prepared statements
+- **XSS Protection**: Data sanitization
+- **File Upload Security**: Extension and size validation
+- **Table Name Validation**: Protection against invalid table names
+- **Error Hiding**: Sensitive information hidden in production
 
-## 📊 Performans İpuçları
+## 📊 Performance Tips
 
-### 1. Index Kullanımı
+### 1. Index Usage
 ```sql
--- Sık sorgulanan sütunlara index ekleyin
+-- Add indexes to frequently queried columns
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_users_status ON users(status);
 ```
 
-### 2. Toplu İşlemler
+### 2. Batch Operations
 ```php
-// Transaction içinde toplu insert
+// Batch insert within transaction
 $db->beginTransaction();
 foreach ($data as $row) {
     $db->insert('table', $row);
@@ -223,9 +223,9 @@ foreach ($data as $row) {
 $db->commit();
 ```
 
-### 3. Sayfalama
+### 3. Pagination
 ```php
-// LIMIT ve OFFSET kullanın
+// Use LIMIT and OFFSET
 $page = 1;
 $perPage = 20;
 $offset = ($page - 1) * $perPage;
@@ -233,10 +233,10 @@ $offset = ($page - 1) * $perPage;
 $users = $db->select('users', '*', '', [], 'id DESC', "{$offset}, {$perPage}");
 ```
 
-## 🛠️ Hata Yönetimi
+## 🛠️ Error Handling
 
 ```php
-// Hata kontrolü
+// Error checking
 $result = $db->insert('users', $data);
 if ($result === false) {
     $error = $db->getError();
@@ -247,20 +247,20 @@ if ($result === false) {
 try {
     $db->insert('users', $invalidData);
 } catch (Exception $e) {
-    echo "Hata: " . $e->getMessage();
+    echo "Error: " . $e->getMessage();
 }
 ```
 
-## 📝 Logging ve Debugging
+## 📝 Logging and Debugging
 
 ```php
-// Query logging aktif etmek için Database sınıfını genişletebilirsiniz
-// veya constructor'da logging ayarlarını yapılandırabilirsiniz
+// Enable query logging by extending the Database class
+// or configure logging settings in the constructor
 ```
 
-## 🔄 Migration Örnekleri
+## 🔄 Migration Examples
 
-### Kullanıcı Tablosu
+### Users Table
 ```sql
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -274,7 +274,7 @@ CREATE TABLE users (
 );
 ```
 
-### Blog Tablosu
+### Blog Table
 ```sql
 CREATE TABLE posts (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -288,9 +288,9 @@ CREATE TABLE posts (
 );
 ```
 
-## 🎯 Gerçek Dünya Örnekleri
+## 🎯 Real World Examples
 
-### Blog Yönetim Sistemi
+### Blog Management System
 ```php
 class BlogManager {
     private $db;
@@ -323,7 +323,7 @@ class BlogManager {
 }
 ```
 
-### E-ticaret Ürün Yönetimi
+### E-commerce Product Management
 ```php
 class ProductManager {
     private $db;
@@ -360,10 +360,10 @@ class ProductManager {
 }
 ```
 
-## 🧪 Test Etme
+## 🧪 Testing
 
 ```php
-// Basit test
+// Simple test
 function testDatabase() {
     $db = new Database();
     
@@ -383,23 +383,23 @@ function testDatabase() {
     $result = $db->delete('test_table', 'id = :id', [':id' => $id]);
     assert($result === true, 'Delete failed');
     
-    echo "✅ Tüm testler başarılı!";
+    echo "✅ All tests passed!";
 }
 ```
 
-## 🤝 Katkıda Bulunma
+## 🤝 Contributing
 
-1. Fork yapın
-2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Add amazing feature'`)
-4. Branch'inizi push edin (`git push origin feature/amazing-feature`)
-5. Pull Request oluşturun
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Create a Pull Request
 
-## 📄 Lisans
+## 📄 License
 
-Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için `LICENSE` dosyasına bakın.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
 
-## 🆘 Destek
+## 🆘 Support
 
 - 📧 Email: support@example.com
 - 🐛 Issues: [GitHub Issues](https://github.com/username/pdo-god-mode/issues)
@@ -408,17 +408,17 @@ Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için `LICENSE` dosy
 ## 📈 Changelog
 
 ### v2.0.0 (2024-01-15)
-- ✨ Gelişmiş hata yönetimi
-- 🔒 Güvenlik iyileştirmeleri
-- 📁 Gelişmiş dosya yükleme
-- 🔄 Transaction desteği
-- 📊 Performans optimizasyonları
+- ✨ Enhanced error handling
+- 🔒 Security improvements
+- 📁 Advanced file upload
+- 🔄 Transaction support
+- 📊 Performance optimizations
 
 ### v1.0.0 (2023-12-01)
-- 🎉 İlk sürüm
-- ✅ Temel CRUD işlemleri
-- 📁 Basit dosya yükleme
+- 🎉 Initial release
+- ✅ Basic CRUD operations
+- 📁 Simple file upload
 
 ---
 
-**PDO God Mode ile veritabanı işlemlerinizi bir üst seviyeye taşıyın! 🚀**
+**Take your database operations to the next level with PDO God Mode! 🚀**

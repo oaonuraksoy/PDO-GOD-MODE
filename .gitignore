@@ -1,0 +1,78 @@
+# PDO God Mode - Git Ignore File
+
+# Veritabanı yapılandırma dosyaları
+config.php
+database.php
+.env
+.env.local
+.env.production
+
+# Log dosyaları
+logs/
+*.log
+error.log
+debug.log
+
+# Yüklenen dosyalar
+uploads/
+files/
+images/
+documents/
+
+# Cache dosyaları
+cache/
+tmp/
+temp/
+
+# Composer
+vendor/
+composer.lock
+
+# IDE ve Editor dosyaları
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS dosyaları
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Backup dosyaları
+*.bak
+*.backup
+*.sql.gz
+backup/
+
+# Test dosyaları (production'da gereksiz)
+test.php
+phpunit.xml
+tests/
+
+# Node.js (eğer frontend tooling kullanılıyorsa)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# PHP
+*.php~
+*.phps
+
+# Geçici dosyalar
+*.tmp
+*.temp
+
+# Güvenlik
+.htaccess.backup
+wp-config.php.backup
+
+# Kişisel notlar
+notes.txt
+todo.txt
+README.local.md
